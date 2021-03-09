@@ -1,7 +1,8 @@
 const { DOMParser } = require('xmldom');
+const { PUBLIC_URL} = process.env;
 
 export default function handler(req, res) {
-  fetch('http://localhost:3000/')
+  fetch(PUBLIC_URL)
     .then(t => t.text())
     .then(t => {
         const parser = new DOMParser();
