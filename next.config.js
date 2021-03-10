@@ -20,7 +20,7 @@ module.exports = withAssetsManifest({
     transform: (assets, manifest) => {
         const entrypoints = [];
       	for(let file in assets) {
-            if(assets[file].endsWith(".js")) {
+            if(assets[file].endsWith(".js") || assets[file].endsWith(".css")) {
             	entrypoints.push(assets[file]);
             }
         }

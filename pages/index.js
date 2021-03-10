@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { AEMText } from '../components/AEMText';
-import AEMPage from '../components/AEMPage';
+import ResponsiveGrid from '../components/ResponsiveGrid';
 
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
@@ -23,12 +23,9 @@ export default function Home ({ allPostsData }) {
           <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <AEMPage
-          pagePath='/content/wknd-spa/home'/>
-        <AEMText
-            pagePath='/content/wknd-spa/home'
-            itemPath='text20'/>
-        <p>Time is an illusion, lunchtime doubly so.</p>
+        <ResponsiveGrid
+          pagePath='/content/wknd-spa/home'
+          itemPath='root/responsivegrid'/>
         <p>
             (This is a sample website - you’ll be building a site like this on{' '}
             <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
