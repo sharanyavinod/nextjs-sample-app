@@ -1,11 +1,8 @@
 const { DOMParser } = require('xmldom');
-const { PUBLIC_URL, REACT_APP_AEM_PROJECT_ROOT} = process.env;
+const { PUBLIC_URL} = process.env;
 
 export default function handler(req, res) {
   let { path = '' } = req.query;
-  if(path) {
-      path = path.split(REACT_APP_AEM_PROJECT_ROOT)[1];
-  }
 
   fetch(PUBLIC_URL + (path || ''))
     .then(t => t.text())
