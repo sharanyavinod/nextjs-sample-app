@@ -1,5 +1,6 @@
 import Head from 'next/head'
-
+import Link from 'next/link'
+// import Date from '../components/date'
 import { AEMText } from '../components/AEMText';
 import ResponsiveGrid from '../components/ResponsiveGrid';
 
@@ -24,7 +25,7 @@ export default function Home ({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <ResponsiveGrid
-          pagePath='/content/wknd-spa/home'
+          pagePath='/content/wknd-spa-react/us/en/home'
           itemPath='root/responsivegrid'/>
         <p>
             (This is a sample website - you’ll be building a site like this on{' '}
@@ -35,16 +36,20 @@ export default function Home ({ allPostsData }) {
            <h2 className={utilStyles.headingLg}>Blog</h2>
            <ul className={utilStyles.list}>
              {allPostsData.map(({ id, date, title }) => (
-               <li className={utilStyles.listItem} key={id}>
-                 {title}
-                 <br />
-                 {id}
-                 <br />
-                 {date}
-               </li>
+                 <li className={utilStyles.listItem} key={id}>
+                    <Link href={`/posts/${id}`}>
+                      <a>{title}</a>
+                    </Link>
+                    <br />
+
+                  </li>
              ))}
            </ul>
         </section>
     </Layout>
   )
 }
+
+// <small className={utilStyles.lightText}>
+//   <Date dateString={date} />
+// </small>
