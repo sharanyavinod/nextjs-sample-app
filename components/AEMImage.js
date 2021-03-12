@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withMappable } from '@adobe/aem-react-editable-components';
 
+const { NEXT_PUBLIC_AEM_HOST_URI } = process.env;
+
 export const ImageEditConfig = {
 
     emptyLabel: 'Image',
@@ -15,7 +17,7 @@ export default class Image extends Component {
     get content() {
         return <img
                 className="Image-src"
-                src={'http://localhost:4502' + this.props.src}
+                src={NEXT_PUBLIC_AEM_HOST_URI + this.props.src}
                 alt={this.props.alt}
                 title={this.props.title ? this.props.title : this.props.alt} />;
     }
