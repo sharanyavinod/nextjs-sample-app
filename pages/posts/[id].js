@@ -25,7 +25,7 @@ export default function Post({ postData }) {
     <Layout>
       <AEMText
        pagePath='/content/wknd-spa-react/us/en/firstpost'
-       itemPath='text20' />
+       itemPath={postData.id} />
       {postData.title}
       <br />
       {postData.id}
