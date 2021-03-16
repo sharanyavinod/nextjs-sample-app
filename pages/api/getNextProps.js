@@ -1,10 +1,9 @@
 const { DOMParser } = require('xmldom');
-const { PUBLIC_URL} = process.env;
+const { NEXT_PUBLIC_URL} = process.env;
 
 export default function handler(req, res) {
   let { path = '' } = req.query;
-
-  fetch(PUBLIC_URL + (path || ''))
+  fetch(NEXT_PUBLIC_URL + (path || ''))
     .then(t => t.text())
     .then(t => {
         const parser = new DOMParser();

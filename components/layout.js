@@ -4,8 +4,14 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
+const { NEXT_PUBLIC_URL } = process.env;
+
 const name = 'Arthur Dent'
 export const siteTitle = 'Next.js Sample Website'
+
+const myLoader = ({ src, width, quality }) => {
+    return `${NEXT_PUBLIC_URL}${src}?w=${width}&q=${quality || 75}`
+}
 
 export default function Layout({ children, home }) {
   return (
@@ -28,10 +34,35 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
+          <Link href="/">
+            <a>
+              <Image
+                priority
+                loader={myLoader}
+                src="images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={108}
+                width={108}
+                alt={name}
+              />
+            </a>
+            </Link>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
           <>
+          <Link href="/">
+            <a>
+              <Image
+                priority
+                src="images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={108}
+                width={108}
+                alt={name}
+              />
+            </a>
+            </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
