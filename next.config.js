@@ -1,20 +1,20 @@
 const withAssetsManifest = require('next-assets-manifest');
+const { NEXT_PUBLIC_AEM_HOST_URI } = process.env;
 
 module.exports = withAssetsManifest({
-  //  async rewrites() {
-  //   return [
-  //     // we need to define a no-op rewrite to trigger checking
-  //     // all pages/static files before we attempt proxying
-  //     {
-  //       source: '/:path*',
-  //       destination: '/:path*'
-  //     },
-  //     {
-  //       source: '/:path*',
-  //       destination: `http://localhost:4502/:path*`
-  //     }
-  //   ]
-  // },
+  async headers() {
+    return [
+        {
+          source: '/api/getNextProps',
+          headers: [
+            {
+              key: 'Access-Control-Allow-Origin',
+              value: NEXT_PUBLIC_AEM_HOST_URI
+            },
+          ],
+        },
+      ]
+  },
   assetsManifest: {
     output: "../public/asset-manifest.json",
     transform: (assets, manifest) => {
