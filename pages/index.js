@@ -23,7 +23,7 @@ export default function Home ({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <ResponsiveGrid
-          pagePath='/content/mysitetest/us/en/home'
+          pagePath='/content/mysitetest/us/en/test-next'
           itemPath='root/responsivegrid'/>
         <p>
             (This is a sample website - you’ll be building a site like this on{' '}
