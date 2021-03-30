@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-// import Date from '../components/date'
-import { AEMText } from '../components/AEMText';
 import ResponsiveGrid from '../components/ResponsiveGrid';
 
 import Layout, { siteTitle } from '../components/layout'
@@ -25,7 +23,7 @@ export default function Home ({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <ResponsiveGrid
-          pagePath='/content/wknd-spa-react/us/en/home'
+          pagePath='/content/mysitetest/us/en/home'
           itemPath='root/responsivegrid'/>
         <p>
             (This is a sample website - you’ll be building a site like this on{' '}
