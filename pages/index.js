@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import ResponsiveGrid from '../components/ResponsiveGrid';
-
+import AEMText from '../components/AEMText';
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
@@ -22,8 +22,8 @@ export default function Home ({ allPostsData }) {
           <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <ResponsiveGrid
-          pagePath='/content/mysitetest/us/en/test-next'
+      <ResponsiveGrid
+          pagePath='/content/wknd-spa-react/us/en/home'
           itemPath='root/responsivegrid'/>
         <p>
             (This is a sample website - you’ll be building a site like this on{' '}

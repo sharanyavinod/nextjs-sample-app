@@ -1,33 +1,54 @@
-const withAssetsManifest = require('next-assets-manifest');
-const { NEXT_PUBLIC_AEM_HOST_URI } = process.env;
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-module.exports = withAssetsManifest({
-  async headers() {
-    return [
-        {
-          source: '/api/getNextProps',
-          headers: [
+module.exports = {
+    reactStrictMode: true,
+    async headers() {
+        return [
             {
-              key: 'Access-Control-Allow-Origin',
-              value: NEXT_PUBLIC_AEM_HOST_URI
+                source: '/api/getNextProps',
+                headers: [ {
+                    key: 'Access-Control-Allow-Origin',
+                    value: process.env.NEXT_PUBLIC_AEM_HOST_URI
+                } ]
             },
-          ],
-        },
-      ]
-  },
-  assetsManifest: {
-    output: "../public/asset-manifest.json",
-    transform: (assets, manifest) => {
-        const entrypoints = [];
-      	for(let file in assets) {
-            if(assets[file].endsWith(".js") || assets[file].endsWith(".css")) {
-            	entrypoints.push(assets[file]);
+            {
+                source: '/asset-manifest.json',
+                headers: [ {
+                    key: 'Access-Control-Allow-Origin',
+                    value: process.env.NEXT_PUBLIC_AEM_HOST_URI
+                } ]
             }
-        }
-        return {
-          files: assets,
-          entrypoints: entrypoints
-        };
-      }
-  }
-});
+        ]
+    },
+    async rewrites() {
+        return [
+            {
+                source: '/content/:path*',
+                destination: '/api/proxy/:path*'
+            },
+            {
+                source: '/.model.json',
+                destination: '/api/proxy/.model.json'
+            }
+        ]
+    },
+    webpack(config) {
+        config.plugins.push(new WebpackAssetsManifest({
+            output: '../public/asset-manifest.json',
+            transform: assets => {
+                const entrypoints = [];
+                for (let file in assets) {
+                    if (assets[file].endsWith('.js') || assets[file].endsWith('.css')) {
+                        entrypoints.push(assets[file]);
+                    }
+                }
+                return {
+                    files: assets,
+                    entrypoints: entrypoints
+                };
+            }
+        }));
+
+        return config;
+    }
+};

@@ -21,4 +21,4 @@ export default withMappable(Page);
 
 import { Text, TextEditConfig } from './AEMText';
 
-MapTo('mysitetest/components/text')(Text, TextEditConfig);
+MapTo('wknd-spa-react/components/text')(Text, TextEditConfig);
